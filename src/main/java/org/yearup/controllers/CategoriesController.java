@@ -9,6 +9,7 @@ import org.yearup.models.Product;
 
 import java.util.List;
 @RestController
+@RequestMapping("categories")
 @CrossOrigin
 // add the annotations to make this a REST controller
 // add the annotation to make this controller the endpoint for the following url
@@ -20,9 +21,13 @@ public class CategoriesController
     private ProductDao productDao;
 
 
+
     // create an Autowired controller to inject the categoryDao and ProductDao
-    @Autowired
+
     // add the appropriate annotation for a get action
+
+    // GET all categories
+    @GetMapping("")
     public List<Category> getAll()
     {
         // find and return all categories
@@ -38,6 +43,7 @@ public class CategoriesController
 
     // the url to return all products in category 1 would look like this
     // https://localhost:8080/categories/1/products
+    // GET products in a category
     @GetMapping("{categoryId}/products")
     public List<Product> getProductsById(@PathVariable int categoryId)
     {
