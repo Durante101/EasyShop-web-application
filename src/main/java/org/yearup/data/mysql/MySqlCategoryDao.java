@@ -5,10 +5,7 @@ import org.yearup.data.CategoryDao;
 import org.yearup.models.Category;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +16,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     {
         super(dataSource);
     }
+
     // get all categories
     @Override
     public List<Category> getAllCategories() {
@@ -39,6 +37,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
 
         return categories;
     }
+
     // get category by id
     @Override
     public Category getById(int categoryId)
@@ -59,23 +58,45 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         return null;
     }
 
+    // create a new category
     @Override
     public Category create(Category category)
     {
-        // create a new category
+        String sql = "INSERT INTO categories(name, description) VALUES (?, ?)";
+
+        try (Connection connection = getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, category.getName());
+            statement.setString(2, category.getDescription());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+
+                if (generatedKeys.next()) {
+                    int categoryId = generatedKeys.getInt(1);
+                    return getById(categoryId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
+    // update category
     @Override
     public void update(int categoryId, Category category)
     {
-        // update category
+
     }
 
+    // delete category
     @Override
     public void delete(int categoryId)
     {
-        // delete category
+
     }
 
     private Category mapRow(ResultSet row) throws SQLException
