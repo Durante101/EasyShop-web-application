@@ -60,12 +60,15 @@ public class CategoriesController
 
     // the url to return all products in category 1 would look like this
     // https://localhost:8080/categories/1/products
-    // GET products in a category
-    @GetMapping("{categoryId}/products")
-    public List<Product> getProductsById(@PathVariable int categoryId)
-    {
-        // get a list of product by categoryId
-        return null;
+    // GET products by category ID
+    @GetMapping("/{categoryId}/products")
+    @PreAuthorize("permitAll()")
+    public List<Product> getProductsByCategory(@PathVariable int categoryId) {
+        try {
+            return productDao.listByCategoryId(categoryId);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to fetch products for this category.");
+        }
     }
 
     // add annotation to call this method for a POST action
