@@ -1,7 +1,10 @@
 package org.yearup.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.yearup.data.CategoryDao;
 import org.yearup.data.ProductDao;
 import org.yearup.models.Category;
@@ -32,13 +35,17 @@ public class CategoriesController
 
     // GET all categories
     @GetMapping("")
-    public List<Category> getAll()
-    {
-        // find and return all categories
-        return categoryDao.getAllCategories();
+    @PreAuthorize("permitAll()")
+    public List<Category> getAll() {
+        try {
+            return categoryDao.getAllCategories();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to fetch categories.");
+        }
     }
 
     // add the appropriate annotation for a get action
+    @GetMapping("/{id}")
     public Category getById(@PathVariable int id)
     {
         // get the category by id
@@ -68,6 +75,9 @@ public class CategoriesController
     public void updateCategory(@PathVariable int id, @RequestBody Category category)
     {
         // update the category by id
+        /**
+         * call method only no return
+         */
     }
 
 
@@ -76,5 +86,8 @@ public class CategoriesController
     public void deleteCategory(@PathVariable int id)
     {
         // delete the category by id
+        /**
+         * call method only no return
+         */
     }
 }

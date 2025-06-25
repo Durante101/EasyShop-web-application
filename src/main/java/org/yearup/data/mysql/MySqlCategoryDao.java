@@ -21,7 +21,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     @Override
     public List<Category> getAllCategories() {
     List<Category> categories = new ArrayList<>();
-    String sql = "Select * From category";
+    String sql = "Select * From categories";
 
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
