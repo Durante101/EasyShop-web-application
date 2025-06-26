@@ -54,7 +54,7 @@ public class CategoriesController
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return category;
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to fetch category.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -76,6 +76,7 @@ public class CategoriesController
     // POST - Add new category (ADMIN only)
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     public Category addCategory(@RequestBody Category category) {
         try {
             return categoryDao.create(category);
@@ -103,6 +104,7 @@ public class CategoriesController
     // DELETE - Remove category (ADMIN only)
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable int id) {
         try {
             Category category = categoryDao.getById(id);
