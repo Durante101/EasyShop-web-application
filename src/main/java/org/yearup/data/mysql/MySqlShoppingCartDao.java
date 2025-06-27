@@ -21,5 +21,10 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         return null;
     }
 
+    @Override
+    public void changeQuantity(int productId, ShoppingCart shoppingCart, int quantity) {
+
+    }
+
 
 }
