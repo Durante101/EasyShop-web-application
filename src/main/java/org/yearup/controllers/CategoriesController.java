@@ -47,7 +47,7 @@ public class CategoriesController
         try
         {
             Category category = categoryDao.getById(id);
-            
+
             if (category == null)
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return category;

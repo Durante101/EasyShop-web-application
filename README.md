@@ -39,9 +39,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Java 17 Maven
 
 ## Demo
-![ezgif-85daeebcd21394.gif](ezgif-85daeebcd21394.gif)
+![ezgif-45f2081f9e8961.gif](ezgif-45f2081f9e8961.gif)
 
-![ezgif-85daeebcd21394.gif](../../../../../../AppData/Local/Temp/ezgif-85daeebcd21394.gif)
 ## Future Work
 Similar to Amazon comparing an item to other similar products that are selected
 
