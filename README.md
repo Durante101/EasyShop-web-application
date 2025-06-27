@@ -6,14 +6,23 @@ The purpose of this application is to  manage product and category data for an o
 
 ## User Stories
 As an admin, I want to add new product categories so that customers can easily browse different types of items.
+
 As an admin, I want to update or delete categories so I can manage which ones are shown to users.
+
 As a user, I want the product search to return accurate results based on filters like price, category, and color.
+
 As an admin, I want product edits to overwrite the existing product instead of adding a duplicate, so the catalog stays clean.
+
 As a logged-in user, I want to add items to my cart so I can build my order over time.
+
 As a user, I want to view, update, or clear my cart so I can control what I plan to buy.
+
 As a logged-in user, I want to view my profile so I can confirm my personal info is correct.
+
 As a user, I want to update my profile info so that it stays accurate.
+
 As a user, I want to convert my cart into an order so I can complete my purchase.
+
 As a user, I want to make sure products are grouped under their correct categories, so that I can easily browse and shop for items by type.
 ## Setup
 
