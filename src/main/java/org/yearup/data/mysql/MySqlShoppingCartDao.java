@@ -11,5 +11,10 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         super(dataSource);
     }
 
+    @Override
+    public ShoppingCart getByUserId(int userId) {
+        return null;
+    }
+
 
 }
