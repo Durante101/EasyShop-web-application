@@ -5,7 +5,7 @@ import org.yearup.models.ShoppingCart;
 
 import javax.sql.DataSource;
 
-public class MySqlShoppingCartDao {
+public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDao {
 
 
 }
